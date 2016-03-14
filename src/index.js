@@ -10,7 +10,7 @@ class GitGet {
 class Events {
     constructor(username){
         this.username = username;
-        this.push = new Push(this.username);
+        this.push = new Push();
     }
     all(){
         return fetch('https://api.github.com/users/' + this.username + '/events')
@@ -18,12 +18,9 @@ class Events {
     }
 }
 
-class Push {
-    constructor(username){
-        this.username = username;
-    }
+class Push extends Events {
     all(){
-        console.log('Returning all the push events for you ' + this.username);
+        super.all();
     }
 }
 
