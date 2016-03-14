@@ -1,27 +1,30 @@
-class GitGet{
+class GitGet {
     constructor(username){
         this.username = username;
+        this.events = new Events(this.username);
+        fetch('https://api.github.com/users/' + this.username + '/events')
+            .then(response => response.json());
     }
+}
 
-    events(){
+class Events {
+    constructor(username){
+        this.username = username;
+        this.push = new Push(this.username);
+    }
+    all(){
         return fetch('https://api.github.com/users/' + this.username + '/events')
             .then(response => response.json());
     }
+}
 
-    pushEvents(){
-        return this.events().then(function(events){
-                let eventsList = [];
-                events.forEach(function(event){
-                    if( event.type === 'PushEvent' ){
-                        eventsList.push(event);
-                    }
-                });
-                return eventsList;
-            });
+class Push {
+    constructor(username){
+        this.username = username;
     }
-
+    all(){
+        console.log('Returning all the push events for you ' + this.username);
+    }
 }
 
 const james = new GitGet('jcquinlan');
-
-james.pushEvents().then(events => console.log(events[0]));
