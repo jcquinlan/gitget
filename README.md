@@ -5,7 +5,7 @@ All calls made to the API are asynchronous, so promises are needed to handle the
 hoping that a solution will be devised that take care of the promises behind-the-scenes, so users can use something
 like :
 
-	"user.get('avatar_url').insert('#div');
+	user.get('avatar_url').insert('#div');
 
 to use the library. This may not be possible, but it is my hope.
 
