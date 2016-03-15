@@ -1,33 +1,39 @@
-function all(){
-    return fetch('https://api.github.com/users/' + this.username + '/events')
-        .then(response => response.json());
-}
-
 class GitGet {
     constructor(username){
         this.username = username;
         this.events = new Events(this.username);
+        this.profile = new Profile(this.username);
         fetch('https://api.github.com/users/' + this.username + '/events')
             .then(response => response.json());
     }
-}
 
-class Events {
-    constructor(username){
-        this.username = username;
-        this.push = new Push(this.username);
-        this.all = all;
+    setHtml(r){
+        document.write(r);
     }
 }
 
-class Push {
+class Profile {
     constructor(username){
         this.username = username;
-        this.all = function(){
-            all.then(function(events){
-                return events.length;
+    }
+
+    get(attr){
+        return fetch('https://api.github.com/users/' + this.username )
+            .then(response => response.json())
+            .then(profile => profile[attr]);
+    }
+}
+class Events {
+    constructor(username){
+        this.username = username;
+    }
+
+    get(type){
+        return fetch('https://api.github.com/users/' + this.username + '/events')
+            .then(response => response.json())
+            .then(function(events){
+                return events.map(event => event.type === type );
             });
-        }
     }
 }
 
