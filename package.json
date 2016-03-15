@@ -1,5 +1,5 @@
 {
-  "name": "babel-test",
+  "name": "gitget",
   "version": "1.0.0",
   "description": "Just a test to learn ES2015",
   "main": "index.js",
@@ -7,9 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d lib"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "James Quinlan",
+  "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.6.5"
+    "babel-cli": "^6.6.5",
+    "install": "^0.6.0",
+    "npm": "^3.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/jcquinlan/gitget.git"
   }
 }
