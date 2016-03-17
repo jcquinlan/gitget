@@ -18,9 +18,14 @@ class Profile {
         this.username = username;
     }
 
+    setHtml(r, e){
+        document.getElementById(e).innerText = r;
+    }
+
     get(attr){
         let instance = this;
-        if( instance.e === false || instance.e === 'undefined' ){
+
+        if( !instance.e ){
             console.log('There is no e.');
 
             fetch('https://api.github.com/users/' + this.username )
@@ -28,9 +33,10 @@ class Profile {
                 .then(function(profile){
                     instance.answer = profile[attr];
                 });
+
             return instance;
         } else {
-            console.log('There is an e');
+            console.log(instance);
 
             fetch('https://api.github.com/users/' + this.username )
                 .then(response => response.json())
@@ -43,7 +49,7 @@ class Profile {
     }
     set(e){
         let instance =  this;
-        if( instance.answer == false ){
+        if( !instance.answer ){
             console.log('Not Ready Yet.')
             instance.e = e;
             instance.get(e);
