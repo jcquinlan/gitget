@@ -3,6 +3,7 @@ class GitGet {
         this.username = username;
         this.events = new Events(this.username);
         this.profile = new Profile(this.username);
+        // Fetch URL on init b
         fetch('https://api.github.com/users/' + this.username + '/events')
             .then(response => response.json());
     }
@@ -19,7 +20,7 @@ class Profile {
 
     get(attr){
         let instance = this;
-        if( instance.e == false){
+        if( instance.e === false || instance.e === 'undefined' ){
             console.log('There is no e.');
 
             fetch('https://api.github.com/users/' + this.username )
@@ -70,7 +71,3 @@ class Events {
         }
     }
 }
-
-
-
-const james = new GitGet('jcquinlan');
