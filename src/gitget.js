@@ -22,7 +22,7 @@ class Profile {
         document.getElementById(e).innerText = r;
     }
 
-    get(attr){
+    get(attr, e){
         let instance = this;
 
         if( !instance.e ){
@@ -32,17 +32,17 @@ class Profile {
                 .then(response => response.json())
                 .then(function(profile){
                     instance.answer = profile[attr];
+                    instance.set();
                 });
 
             return instance;
         } else {
-            console.log(instance);
+            console.log('Ready!');
 
             fetch('https://api.github.com/users/' + this.username )
                 .then(response => response.json())
                 .then(function(profile){
                     instance.answer = profile[attr];
-                    instance.set(instance.e);
                 });
         }
 
@@ -51,11 +51,9 @@ class Profile {
         let instance =  this;
         if( !instance.answer ){
             console.log('Not Ready Yet.')
-            instance.e = e;
-            instance.get(e);
         } else {
-            console.log('Ready!');
             document.getElementById(e).innerText = instance.answer;
+            console.log('Set!');
         }
     }
 }
