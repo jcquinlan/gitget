@@ -8,7 +8,7 @@ class GitGet {
             .then(response => response.json());
     }
 
-    setHtml(r, e){
+    set(r, e){
         document.getElementById(e).innerText = r;
     }
 }
@@ -22,25 +22,12 @@ class Profile {
         let instance = this;
 
         return fetch('https://api.github.com/users/' + this.username )
-            .then(response => response.json())
-            .then(function(profile){
-                instance.answer = profile[attr];
-        });
+            .then(response => response.json());
     }
 
     set(){
-        console.log(this.answer + ' blah');
-    }
-
-    // set(e){
-    //     let instance =  this;
-    //     if( !instance.answer ){
-    //         console.log('Not Ready Yet.')
-    //     } else {
-    //         document.getElementById(e).innerText = instance.answer;
-    //         console.log('Set!');
-    //     }
-    // }
+        console.log(this.answer);
+    };
 }
 class Events {
     constructor(username){
