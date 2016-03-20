@@ -26,7 +26,7 @@ class Profile {
     }
 
     set(){
-        console.log(this.answer);
+        alert(this.answer);
     };
 }
 class Events {
